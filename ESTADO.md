@@ -39,7 +39,7 @@ Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo clar
 - [ ] El personaje anime viene con fotogramas pequeños (~170x410 px útiles) escalados a 720 px de alto; se ve algo suave. Pedir versión de mayor resolución si se quiere más nitidez.
 - [ ] Revisar/cambiar los mensajes de los bocadillos (`SAY` en `script.js`); son inventados a partir de sus datos.
 - [ ] Oracle: descripción genérica ("Manejo de bases de datos Oracle"). Preguntar si usó PL/SQL, administración, etc. y si añadirlo a la experiencia.
-- [ ] README del perfil de GitHub (repo `RyanCloudOps/RyanCloudOps`) con este mismo estilo; es un repo distinto, aún no tocado.
+- [x] README del perfil de GitHub (repo `RyanCloudOps/RyanCloudOps`, commit `18148dc`): publicado con el tema del portfolio (cabecera SVG con personaje animado incrustado, tabla periódica SVG, botones, variantes claro/oscuro con `<picture>`). El generador es `build_profile.py` (scratchpad de la sesión, no está en el repo); lo antiguo está en `archive/` de ese repo. Pendiente de revisar: aspecto en tema claro y en móvil, y peso de la cabecera (~750 KB).
 - [ ] Vista móvil: el hero se ve bien con ~650 px de ancho; falta revisar el resto de secciones y el scroll lateral de logros.
 - [ ] Idea: animaciones/poses distintas según la sección visible (p. ej. usar las poses reales de traje azul).
 - [ ] Decidir si se borra `arcade-backup/` (carpeta local ignorada por git).
