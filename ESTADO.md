@@ -40,4 +40,5 @@ Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo clar
 ## Notas técnicas
 - Para recortar fondos verdes (scripts `key2.py`/`key3.py` en el scratchpad de la sesión, no están en el repo; `key3.py` une varias hojas 4x3, alinea los pies y monta un spritesheet) se usó un entorno virtual temporal (numpy + opencv + pillow) en el scratchpad de la sesión. Si hay que recortar más imágenes hay que recrearlo: chroma key con `g - max(r,b)`, despill, y una misma ventana de recorte para todos los fotogramas.
 - Servidor local para probar: `python -m http.server 5500` en la carpeta, luego http://localhost:5500
+- Si cambias imágenes/CSS/JS con el mismo nombre, sube el número `?v=` en `index.html` y `script.js` para saltar la caché del navegador (GitHub Pages cachea 10 min).
 - Publicar: `git add -A && git commit -m "..." && git push origin main`
