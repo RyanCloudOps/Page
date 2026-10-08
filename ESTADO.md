@@ -1,6 +1,13 @@
 # Estado del proyecto — Portafolio de Gary Flores
 
-_Última actualización: 2026-10-09._ Léelo al empezar la próxima sesión._
+_Última actualización: 2026-10-09. Léelo al empezar la próxima sesión._
+
+## Dónde quedamos (último cierre de sesión)
+- Todo está subido a GitHub; rama `main` = `origin/main`, árbol de trabajo limpio. Último commit: "Versiona recursos para evitar caché antigua en la tarjeta ID" (`16ed481`).
+- La web publicada ya sirve la versión nueva (se comprobó con `curl`: `index.html` con `?v=4`). Si Gary ve algo antiguo, es caché del navegador: Ctrl+F5 o incógnito.
+- Hecho en la última sesión: hero con dos clips (hablando 24 fotogramas + brazos cruzados 12) alternados con fundido; tarjeta ID con el retrato anime (`gary-id.webp`); versionado `?v=` de recursos.
+- Sin tareas a medias. Lo siguiente que probablemente quiera: más animaciones (saludando, pulgar arriba), README del perfil de GitHub y revisar la vista móvil. Ver "Pendiente / ideas" abajo.
+- Servidor local parado; no hay procesos abiertos.
 
 ## Qué es
 Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo claro/oscuro.
