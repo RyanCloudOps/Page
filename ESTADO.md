@@ -22,12 +22,12 @@ Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo clar
 - `script.js` — traducciones EN (`EN`), skills (`SK`), animación del hero y bocadillos (`SAY`), tarjeta ID, tema, idioma
 - `styles.css` — estilos; colores como variables en `:root`
 - `assets/gary-talk.webp` (24 fotogramas de 319x720, 6x4) y `assets/gary-anim.webp` (12 fotogramas de 304x720, 4x3) — spritesheets del hero
-- `assets/gary-character.svg` — personaje vectorial (solo se usa en la tarjeta ID) · `assets/gary.webp` — foto de traje
+- `assets/gary-id.webp` — retrato anime de la tarjeta ID · `assets/gary.webp` — foto real de traje (botón "Ver foto real")
 - `cv-gary-flores.pdf` — CV descargable
 - Originales (fuera del repo, en `C:\Users\pflor\Documents\Codex\2026-10-07\en-e\outputs\`): `animacion-brazos-cruzados.zip` y las 2 hojas de "hablando" (en el chat, no hay zip) y `poses-fondo-verde.zip` (poses reales de traje azul)
 
 ## Pendiente / ideas
-- [ ] Tarjeta ID de "Sobre mí": cambiar el personaje vectorial por el personaje anime (primer fotograma) o un recorte de la foto de traje.
+- [x] Tarjeta ID de "Sobre mí": ya usa el retrato anime (`gary-id.webp`); el SVG vectorial se eliminó.
 - [ ] Faltan más animaciones del personaje anime (saludando, pulgar arriba) y usarlas según la sección; ya se dieron los prompts para ChatGPT (hojas 4x3 fondo #00FF00, 2 partes por animación).
 - [ ] El personaje anime viene con fotogramas pequeños (~170x410 px útiles) escalados a 720 px de alto; se ve algo suave. Pedir versión de mayor resolución si se quiere más nitidez.
 - [ ] Revisar/cambiar los mensajes de los bocadillos (`SAY` en `script.js`); son inventados a partir de sus datos.
@@ -35,7 +35,7 @@ Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo clar
 - [ ] README del perfil de GitHub (repo `RyanCloudOps/RyanCloudOps`) con este mismo estilo; es un repo distinto, aún no tocado.
 - [ ] Vista móvil: el hero se ve bien con ~650 px de ancho; falta revisar el resto de secciones y el scroll lateral de logros.
 - [ ] Idea: animaciones/poses distintas según la sección visible (p. ej. usar las poses reales de traje azul).
-- [ ] Decidir si se borra `arcade-backup/` y `assets/gary-character.svg` si ya no se usan.
+- [ ] Decidir si se borra `arcade-backup/` (carpeta local ignorada por git).
 
 ## Notas técnicas
 - Para recortar fondos verdes (scripts `key2.py`/`key3.py` en el scratchpad de la sesión, no están en el repo; `key3.py` une varias hojas 4x3, alinea los pies y monta un spritesheet) se usó un entorno virtual temporal (numpy + opencv + pillow) en el scratchpad de la sesión. Si hay que recortar más imágenes hay que recrearlo: chroma key con `g - max(r,b)`, despill, y una misma ventana de recorte para todos los fotogramas.
