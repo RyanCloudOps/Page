@@ -1,8 +1,26 @@
 # Estado del proyecto — Portafolio de Gary Flores
 
-_Última actualización: 2026-10-09. Léelo al empezar la próxima sesión._
+_Última actualización: 2026-10-28. Léelo al empezar la próxima sesión._
 
-## Dónde quedamos (último cierre de sesión)
+## Cierre (2026-10-28)
+- Todo subido a GitHub (`main` = `origin/main`). Recursos en `?v=9`. Si la web publicada se ve antigua: Ctrl+F5 o incógnito (GitHub Pages tarda 1–2 min y cachea 10 min).
+- Sin tareas a medias. Posibles siguientes pasos: ajustar `EGG_SPOT` si Gary quiere la mitad derecha más cerca/lejos del dedo; revisar en un móvil real el hero y el huevo; el resto de "Pendiente / ideas" abajo.
+- El clip original de Kling (`assets/hf_20261028_020311_*.mp4`, 10 MB) sigue en local pero no se sube (ignorado por git).
+- Servidor local parado.
+
+## Sesión 2026-10-27/28
+- Hero nuevo: personaje 3D. Fuente: un único clip de Kling de 15 s (`assets/hf_*.mp4`, ignorado por git, 1244x1664, fondo verde plano). El verde se quita offline (`tools/hero-key.py`: recorte 816x1377 en 214,160 → 640x1080, alfa por `g - max(r,b)`, despill, contracción del borde de 1 px) y se guarda en `assets/gary-hero.mp4` como vídeo "apilado": 640x2160, color premultiplicado arriba y alfa abajo. El shader WebGL (`keyer()` en `script.js`) solo los combina. El bucle es lineal y dura 15 s (360 fotogramas, sin bumerán ni morph): el clip ya acaba con los brazos cruzados igual que empieza, solo se quita el último fotograma, que repite el primero. `assets/gary-hero.webp` es el póster transparente (fallback sin WebGL / reduced motion).
+- Nubes sincronizadas con el vídeo (`BEATS` en `script.js`): 0,2–2,9 s "¡Hola! Bienvenido…", 3,1–5 s "Baja y mira lo que hago 👇" (señala abajo), 9–13,4 s "Une las 2 piezas 🥚" (señala a la derecha, dedo en la barbilla y luego se inclina y señala abajo a la derecha). Entre 5,5 y 8,9 s mira a los lados y las mitades del huevo brillan. La mitad derecha del huevo se coloca por JS (`placeSpot()`, `EGG_SPOT = [0.92, 0.72]` como fracción del escenario del personaje) justo donde señala a los 12–13,4 s; se recalcula al redimensionar.
+- Huevo de Pascua: dos mitades en las esquinas superiores del hero (en móvil, a los lados del cuerpo). Se arrastran para unirlas (con teclado, Enter las une); aparece "¡Rómpelo!" y un martillo; 3 golpes lo rompen y sale el mensaje "Si puedes imaginarlo, puedes programarlo." con el botón "Programación ATS" → https://www.youtube.com/channel/UC7QoKU6bj1QbXQuNIjan82Q
+- Reglas del skill `landing-page-design` (instalado en `.claude/skills/`) aplicadas: fuente Geist + Geist Mono, sin cursivas ni pesos 800, nav flotante en píldora con menú móvil a pantalla completa, curva `--ease`, fondo oscuro #000, sección de tagline que se ilumina palabra a palabra, enlace "saltar al contenido", meta og.
+- Borrados `gary-talk.webp` y `gary-anim.webp` (sprites del hero anterior). También instalado el skill `scroll-world` en `.claude/skills/` (no se usó: necesita APIs de pago Monid/Higgsfield).
+- Para regenerar el clip (con un venv con numpy + pillow, y opencv-python-headless para el morph):
+  1. `python tools/hero-key.py assets/hf_XXX.mp4 <carpeta>` genera los PNG apilados y `poster.webp`.
+  2. `ffmpeg -framerate 24 -i <carpeta>/%04d.png -frames:v 360 -vf format=yuv420p -c:v libx264 -preset slow -crf 22 -tune animation -movflags +faststart -an assets/gary-hero.mp4`, y copiar `poster.webp` a `assets/gary-hero.webp`.
+  3. Subir `?v=` y reajustar `BEATS`/`PEEK`/`EGG_SPOT` a los gestos del nuevo clip.
+  Si un clip no acaba en la pose inicial, `tools/hero-morph.py <carpeta> <salida> 14` (OpenCV DIS optical flow) hace un morph de vuelta en los últimos fotogramas.
+
+## Cierre anterior (2026-10-09)
 - Todo está subido a GitHub; rama `main` = `origin/main`, árbol de trabajo limpio. Último commit: "Versiona recursos para evitar caché antigua en la tarjeta ID" (`16ed481`).
 - La web publicada ya sirve la versión nueva (se comprobó con `curl`: `index.html` con `?v=4`). Si Gary ve algo antiguo, es caché del navegador: Ctrl+F5 o incógnito.
 - Hecho en la última sesión: hero con dos clips (hablando 24 fotogramas + brazos cruzados 12) alternados con fundido; tarjeta ID con el retrato anime (`gary-id.webp`); versionado `?v=` de recursos.
@@ -26,9 +44,11 @@ Portafolio personal (HTML + CSS + JS sin frameworks), bilingüe ES/EN, modo clar
 
 ## Archivos clave
 - `index.html` — contenido en español (`data-i18n` para traducir)
-- `script.js` — traducciones EN (`EN`), skills (`SK`), animación del hero y bocadillos (`SAY`), tarjeta ID, tema, idioma
+- `script.js` — traducciones EN (`EN`), skills (`SK`), hero (vídeo + nubes `BEATS`), huevo de Pascua, tarjeta ID, tema, idioma, menú móvil
 - `styles.css` — estilos; colores como variables en `:root`
-- `assets/gary-talk.webp` (24 fotogramas de 319x720, 6x4) y `assets/gary-anim.webp` (12 fotogramas de 304x720, 4x3) — spritesheets del hero
+- `assets/gary-hero.mp4` (clip del hero ya recortado: color arriba, alfa abajo; se combina en WebGL) y `assets/gary-hero.webp` (póster transparente)
+- `tools/hero-key.py` y `tools/hero-morph.py` — scripts para procesar un clip nuevo de Kling (ver la sesión 2026-10-27/28)
+- `.claude/skills/` — skills `landing-page-design` y `scroll-world` del proyecto
 - `assets/gary-id.webp` — retrato anime de la tarjeta ID · `assets/gary.webp` — foto real de traje (botón "Ver foto real")
 - `cv-gary-flores.pdf` — CV descargable
 - Originales (fuera del repo, en `C:\Users\pflor\Documents\Codex\2026-10-07\en-e\outputs\`): `animacion-brazos-cruzados.zip` y las 2 hojas de "hablando" (en el chat, no hay zip) y `poses-fondo-verde.zip` (poses reales de traje azul)

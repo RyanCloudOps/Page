@@ -1,1 +1,4 @@
 arcade-backup/
+
+# Raw Higgsfield clips (the site uses the processed assets/gary-hero.mp4)
+assets/hf_*.mp4
